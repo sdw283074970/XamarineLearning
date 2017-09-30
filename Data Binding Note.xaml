@@ -1,14 +1,48 @@
-<!--第一种数据绑定方法-->
-
+<!--第一种数据绑定方法Data Binding逐个绑定-->
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Hellow_World.Page1">
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                  iOS="0, 20, 0, 0"
+                  Android="0, 40, 0, 0">
+        </OnPlatform>
+    </ContentPage.Padding>
+    <StackLayout HorizontalOptions="Center">
+        <BoxView Color="Green" Opacity="{Binding
+                Source={x:Reference slider},
+                Path=Value} />
         <Label Text="{Binding 
-            Source={x:Reference slider},
-            Path=Value,
-            StringFormat='Value is {0:F2}' x:Name="label" />
+              Source={x:Reference slider},
+              Path=Value,
+              StringFormat='Value is {0:F2}' }"
+            
+              Opacity="{Binding
+              Source={x:Reference slider},
+              Path=Value}"
+              
+              x:Name="label" />
+        <Slider x:Name="slider" />
+    </StackLayout>
+</ContentPage>
+
+<!--第二种数据绑定方法Data Binding根绑定-->
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hellow_World.Page1">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                  iOS="0, 20, 0, 0"
+                  Android="0, 40, 0, 0">
+        </OnPlatform>
+    </ContentPage.Padding>
+    <StackLayout BindingContext="{x:Reference slider}"
+                 HorizontalOptions="Center">
+        <BoxView Color="Green" Opacity="{Binding Value}" />
+        <Label Text="{Binding Value,
+              StringFormat='Value is {0:F2}' />
         <Slider x:Name="slider" />
     </StackLayout>
 </ContentPage>
