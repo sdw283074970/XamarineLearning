@@ -21,11 +21,11 @@ namespace HelloWorld
 
 		void Handle_Clicked(object sender, System.EventArgs e)
 		{
-            _index++;
-            if (_index >= _quotes.Length)
+            		_index++;
+	    		if (_index >= _quotes.Length) {
 				_index = 0;
-
+			}
 			currentQuote.Text = _quotes[_index];
-        }
+        	}
 	}
 }
