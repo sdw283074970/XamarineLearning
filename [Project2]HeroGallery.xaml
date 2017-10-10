@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage BackgroundColor="Black"
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:HellowWorld"
+    xmlns:ic="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+    x:Class="HellowWorld.ImageCirclePage">
+    <AbsoluteLayout>
+        <Button Image="left.png"
+            AbsoluteLayout.LayoutBounds="0.1, 0.1, 50, 50"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            Clicked="Handle_Clicked_left" x:Name="left" />
+        <Button Image="right.png"
+            AbsoluteLayout.LayoutBounds="0.9, 0.1, 50, 50"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            Clicked="Handle_Clicked_right" x:Name="right" />
+        <ic:CircleImage Source="{local:EmbededImage pa}"
+            Aspect="AspectFill"
+            AbsoluteLayout.LayoutBounds="0.5, 0.5, 100, 100"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            x:Name="ic"/>
+    </AbsoluteLayout>
+</ContentPage>
