@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:local="clr-namespace:HellowWorld; assembly=HelloWorld"
+    x:Class="HellowWorld.ListPage">
+    <AbsoluteLayout>
+        <AbsoluteLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 0.15"
+            AbsoluteLayout.LayoutFlags="SizeProportional">
+            <BoxView Color="Gray" AbsoluteLayout.LayoutBounds="0, 0, 1, 0.2"
+                AbsoluteLayout.LayoutFlags="All"/>
+            <Label Text="Please select enemy heroes"
+                AbsoluteLayout.LayoutBounds="0.5, 0, 1, 0.8"
+                AbsoluteLayout.LayoutFlags="All"
+                HorizontalOptions="Center"
+                TextColor="White"/>
+            <Grid AbsoluteLayout.LayoutBounds="0, 0.5, 1, 0.6"
+                AbsoluteLayout.LayoutFlags="All" ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" Text="+" TextColor="White"
+                    HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="Gray" BorderRadius="3" FontSize="40"
+                    WidthRequest="50" HeightRequest="50"/>
+                <Button Grid.Row="0" Grid.Column="1" Text="+" TextColor="White"
+                    HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="Gray" BorderRadius="3" FontSize="40"
+                    WidthRequest="50" HeightRequest="50"/>
+                <Button Grid.Row="0" Grid.Column="2" Text="+" TextColor="White"
+                    HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="Gray" BorderRadius="3" FontSize="40"
+                    WidthRequest="50" HeightRequest="50" />
+                <Button Grid.Row="0" Grid.Column="3" Text="+" TextColor="White"
+                    HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="Gray" BorderRadius="3" FontSize="40"
+                    WidthRequest="50" HeightRequest="50" />
+                <Button Grid.Row="0" Grid.Column="4" Text="+" TextColor="White"
+                    HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="Gray" BorderRadius="3" FontSize="40"
+                    WidthRequest="50" HeightRequest="50" />
+            </Grid>
+            <BoxView Color="Black" Opacity="0.9"
+                AbsoluteLayout.LayoutBounds="0, 1, 1, 0.2"
+                AbsoluteLayout.LayoutFlags="All" />
+            <AbsoluteLayout AbsoluteLayout.LayoutBounds="0, 1, 1, 0.2"
+                AbsoluteLayout.LayoutFlags="All">
+                <Label Text="Suggestion" FontAttributes="Bold"
+                    TextColor="White" FontSize="12"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    AbsoluteLayout.LayoutBounds="0, 0, 68, 1"
+                    AbsoluteLayout.LayoutFlags="PositionProportional, HeightProportional" />
+                <Grid AbsoluteLayout.LayoutBounds="1, 0, 0.82, 1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    VerticalOptions="Center"
+                    ColumnSpacing="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" FontSize="12"
+                        Text="Total" FontAttributes="Bold" TextColor="White"
+                        HorizontalOptions="Center"/>
+                    <Label Grid.Row="0" Grid.Column="1" FontSize="12"
+                        Text="Vs.Dom" FontAttributes="Bold" TextColor="White"
+                        HorizontalOptions="Center"/>
+                    <Label Grid.Row="0" Grid.Column="2" FontSize="12"
+                        Text="Vs.Pom" FontAttributes="Bold" TextColor="White"
+                        HorizontalOptions="Center"/>
+                    <Label Grid.Row="0" Grid.Column="3" FontSize="12"
+                        Text="Vs.Nec" FontAttributes="Bold" TextColor="White"
+                        HorizontalOptions="Center"/>
+                    <Label Grid.Row="0" Grid.Column="4" FontSize="12"
+                        Text="Vs.Sni" FontAttributes="Bold" TextColor="White"
+                        HorizontalOptions="Center"/>
+                    <Label Grid.Row="0" Grid.Column="5" FontSize="12"
+                        Text="Vs.Vip" FontAttributes="Bold" TextColor="White"
+                        HorizontalOptions="Center"/>
+                </Grid>
+            </AbsoluteLayout>
+        </AbsoluteLayout>
+            <ListView x:Name="listView" 
+            IsGroupingEnabled="true"
+            GroupDisplayBinding="{Binding Title}"
+            SeparatorColor="Black" 
+            HasUnevenRows="true"
+            AbsoluteLayout.LayoutBounds="0.5, 1, 1, 0.85"
+            AbsoluteLayout.LayoutFlags="All"
+            ItemTapped="Handle_ItemTapped"
+            ItemSelected="Handle_ItemSelected"
+            RowHeight="15">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell Height="70">
+                        <ViewCell.ContextActions>
+                            <MenuItem Text = "Mark" Clicked="Mark_Clicked" 
+                                CommandParameter="{Binding .}"/>
+                            <MenuItem Text = "Ban" Clicked="Ban_Clicked" 
+                                IsDestructive="true" CommandParameter="{Binding .}"/>
+                        </ViewCell.ContextActions>
+                        <AbsoluteLayout>
+                            <AbsoluteLayout AbsoluteLayout.LayoutBounds="0, 0, 68, 70"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional">
+                                <Image Source="{Binding ImageSrc}"
+                                    AbsoluteLayout.LayoutBounds="0, 0, 68, 70"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional" />
+                                <BoxView Color="Black" Opacity="0.5"
+                                    AbsoluteLayout.LayoutBounds="1, 1, 68, 15"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional" />
+                                <Label Text="{Binding Name}" TextColor="White"
+                                    FontSize="14"
+                                    HorizontalOptions="Center"
+                                    AbsoluteLayout.LayoutBounds="1, 1, 1, 0.2"
+                                    AbsoluteLayout.LayoutFlags="All"/>
+                            </AbsoluteLayout>
+                            <Grid Padding="10" ColumnSpacing="40"
+                                AbsoluteLayout.LayoutBounds="1, 0, 0.82, 1"
+                                AbsoluteLayout.LayoutFlags="All"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0"
+                                    Text="{Binding ScoreTotal}" TextColor="Red" 
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"/>
+                                <Label Grid.Row="0" Grid.Column="1"
+                                    Text="{Binding Score1}" TextColor="Red"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"/>
+                                <Label Grid.Row="0" Grid.Column="2"
+                                    Text="{Binding Score2}" TextColor="Red"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"/>
+                                <Label Grid.Row="0" Grid.Column="3"
+                                    Text="{Binding Score3}" TextColor="Red"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"/>
+                                <Label Grid.Row="0" Grid.Column="4"
+                                    Text="{Binding Score4}" TextColor="Red"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"/>
+                                <Label Grid.Row="0" Grid.Column="5"
+                                    Text="{Binding Score5}" TextColor="Red"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"/>
+                            </Grid>
+                        </AbsoluteLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </AbsoluteLayout>
+</ContentPage>
