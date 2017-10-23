@@ -63,8 +63,8 @@
 //5.选择器（Picker）
 //选择器为用户提供一系列选择，通过先择不同的选项触发不同的事件。Picker.Items类型为IList<String>,在xaml中通常结构为：
 
-<Picker>
-  <Picker.Item x:Name="ContactMethods">
+<Picker x:Name="ContactMethods">
+  <Picker.Item>
     <x:String>Option1</x:String>
     <x:String>Option2</x:String>
   <Picker.Item>
@@ -84,3 +84,30 @@
 //3）SelectedIndex="Handle_SelectedIndex" 同上不做赘述。
 
 //用后台(Code-Behind)实现选择器架构：
+
+  public class ContactMethod {
+    public int Id { get; set; }
+    public string Name { get; set; }
+  }
+
+  void partial class MainPage : ContentPage {
+    private IList<ContactMethod> _contactMethods;
+    void Handle_SelectedIndexChanged(object sender, Xamarin.Forms.ToggledEventArgs e) {
+      var name = ContactMethods.Items[ContactMethods.SelectedIndex];
+      var contactMethod = _contactMethods.Single(cm => cm.Name == name);
+      DisplayAlert("Selection", name, "OK");
+    }
+  }
+  public MainPage() {
+    InitializeComponent();
+
+    _contactMethods = GetContactMethods();
+    foreach (car method in _contactMethods) {
+      picker.Items.Add(method.Name);
+    }
+  }
+
+  private IList<ContactMethod> GetContactMethods() {
+    new ContactMethod { Id = 1, Name = "SMS" }
+      new ContactMethod { Id = 1, Name = "Email" }
+  }
