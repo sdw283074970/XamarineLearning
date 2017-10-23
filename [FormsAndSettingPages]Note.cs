@@ -109,5 +109,5 @@
 
   private IList<ContactMethod> GetContactMethods() {
     new ContactMethod { Id = 1, Name = "SMS" }
-      new ContactMethod { Id = 1, Name = "Email" }
+      new ContactMethod { Id = 2, Name = "Email" }
   }
